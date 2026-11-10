@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
-<title>TikTok – Your profile, your banner, your vibe</title>
+<title>AppName – Your profile, your banner, your vibe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -131,12 +131,24 @@ h1 .v{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-cli
 .store{display:flex;align-items:center;gap:12px}
 .store svg{width:28px;height:28px;flex:none}
 .store span{display:block}
+.md{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.md.on{display:flex}
+.mc{position:relative;width:100%;max-width:430px;background:#0f0f13;border:1px solid rgba(255,255,255,.14);border-radius:28px;padding:44px 32px 32px;text-align:center;box-shadow:0 0 70px rgba(254,44,85,.25),0 0 0 1px rgba(37,244,238,.2)}
+.mx{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:16px;cursor:pointer}
+.mlg{width:72px;height:72px;border-radius:20px;border:3px solid var(--a);background:#0a0a0e;box-shadow:0 0 22px rgba(37,244,238,.5);margin:0 auto 22px;display:grid;place-items:center}
+.mlg:after{content:"";border-left:20px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
+.mc h3{font-size:26px}
+.mc p{color:var(--mute);margin:10px 0 28px}
+.mgo{display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(90deg,var(--b),#ff5a7a);color:#fff;font-weight:700;padding:16px;border-radius:14px;box-shadow:0 10px 30px rgba(254,44,85,.4)}
+.mgo[hidden]{display:none}.mgo+.mgo{margin-top:12px}
+.mn{margin-top:20px;font-size:14px;color:var(--mute)}
+.mn b{color:var(--a)}
 </style>
 </head>
 <body>
 <div class="wrap">
 <nav>
-<a class="logo" href="#top"><i></i>TikTok</a>
+ <a class="logo" href="#top"><i></i>AppName</a>
  <div class="links"><a href="#features">Features</a><a href="#install">How to install</a><a class="pill" href="#get">Get the app</a></div>
 </nav>
 
@@ -201,128 +213,21 @@ h1 .v{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-cli
  
 </div>
 
-<footer><span class="logo">TikTok</span><div class="links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div><span>© 2026 TikTok</span></footer>
+<footer><span class="logo">AppName</span><div class="links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div><span>© 2026 AppName</span></footer>
 </main>
 <script>
 (function(){var m=document.querySelector('.main .ban'),bs=document.querySelectorAll('.th button');
 bs.forEach(function(b){b.addEventListener('click',function(){m.style.background=b.dataset.bg;bs.forEach(function(x){x.style.boxShadow='none'});b.style.boxShadow='0 0 0 2px #fff'})});
 bs[3].style.boxShadow='0 0 0 2px #fff'})();
 </script>
-<!-- ===== CAPTCHA MODAL ===== -->
-<style>
-/* تصميم النافذة المنبثقة */
-#cpModal{
-  position: fixed; inset: 0; z-index: 99999;
-  background: rgba(5,5,7,.92);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  display: flex; align-items: center; justify-content: center;
-  padding: 20px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .25s ease;
-}
-#cpModal.on{ opacity: 1; pointer-events: auto; }
-
-#cpBox{
-  position: relative;
-  width: 100%; max-width: 400px;
-  background: linear-gradient(160deg,#16161c,#0b0b0f);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 24px;
-  padding: 34px 24px 22px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.65), 0 0 0 1px rgba(37,244,238,.20), 0 0 50px rgba(254,44,85,.18);
-}
-
-#cpClose{
-  position: absolute; top: 12px; right: 12px;
-  width: 34px; height: 34px; border-radius: 50%;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.12);
-  color: #cfcfda; font-size: 22px; line-height: 1;
-  cursor: pointer; display: grid; place-items: center;
-  padding: 0; transition: all .15s; z-index: 10;
-}
-#cpClose:hover{ background: rgba(254,44,85,.2); color: #fff; border-color: rgba(254,44,85,.45); }
-
-/* الشعار */
-.cp-head{ text-align: center; margin-bottom: 20px; }
-.cp-logo{
-  display: inline-grid; place-items: center;
-  width: 64px; height: 64px;
-  border-radius: 18px;
-  border: 3px solid var(--a);
-  box-shadow: 0 0 24px rgba(37,244,238,.5), 3px 3px 0 var(--b);
-  margin-bottom: 14px;
-  position: relative;
-}
-.cp-logo:after{
-  content: ""; border-left: 18px solid #fff; border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 4px;
-}
-.cp-title{ font-family: 'Sora', Inter, sans-serif; font-size: 20px; font-weight: 700; color: #fff; margin: 0 0 6px; }
-.cp-sub{ font-size: 14px; color: #9a9aa8; margin: 0; }
-
-/* حاوية الكابتشا */
-.cp-captcha-wrap{
-  margin-top: 20px;
-  background: rgba(255,255,255,.03);
-  border: 1px dashed rgba(255,255,255,.15);
-  border-radius: 16px;
-  padding: 16px;
-  min-height: 90px;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-}
-.cp-foot{ text-align: center; margin-top: 14px; font-size: 12px; color: #6b6b78; }
-.cp-foot b{ color: var(--a); }
-</style>
-
-<div id="cpModal" aria-hidden="true" role="dialog" aria-modal="true">
-  <div id="cpBox">
-    <button id="cpClose" type="button" aria-label="Close">×</button>
-
-    <div class="cp-head">
-      <div class="cp-logo" aria-hidden="true"></div>
-      <h3 class="cp-title">Verify you are human</h3>
-      <p class="cp-sub">Complete the check to continue.</p>
-    </div>
-
-    <!-- Step Two: Include HTML -->
-    <div class="cp-captcha-wrap">
-      <div data-captcha-enable="true"></div>
-    </div>
-
-    <div class="cp-foot">Protected by <b>TikTok Secure</b></div>
-  </div>
-</div>
-
-<!-- Step One: Include Script -->
-<script type="text/javascript" src="https://apptrck.net/cp/js/ymrzo"></script>
-
-<!-- كود بسيط لفتح النافذة عند الضغط -->
+<div class="md" id="md" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="mc"><button type="button" class="mx" aria-label="Close">✕</button><div class="mlg"></div><h3 id="mt">You’re almost there</h3><p>Continue to the store to install the app.</p><a class="mgo" id="mgo" href="#" target="_blank" rel="noopener"><span id="mgot">Continue</span> →</a><a class="mgo" id="mgo2" href="#" target="_blank" rel="noopener" hidden>Continue to Google Play →</a><div class="mn">100% free · <b>Only [SIZE] MB</b></div></div></div>
 <script>
-(function(){
-  var modal = document.getElementById('cpModal');
-  var closeBtn = document.getElementById('cpClose');
-
-  // فتح النافذة عند الضغط على أزرار المتاجر
-  document.querySelectorAll('.stores .store').forEach(function(b){
-    b.addEventListener('click', function(e){
-      e.preventDefault();
-      modal.classList.add('on');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-
-  // إغلاق النافذة
-  function close(){
-    modal.classList.remove('on');
-    document.body.style.overflow = '';
-  }
-  closeBtn.addEventListener('click', close);
-  modal.addEventListener('click', function(e){ if (e.target === e.currentTarget) close(); });
-})();
+(function(){var md=document.getElementById('md'),go=document.getElementById('mgo'),g2=document.getElementById('mgo2'),last=null,L={ios:'#',android:'#'};
+function open(k){var ios=k!=='android';document.getElementById('mgot').textContent='Continue to '+(ios?'App Store':'Google Play');go.href=ios?L.ios:L.android;g2.hidden=k!=='both';g2.href=L.android;md.classList.add('on');document.body.style.overflow='hidden';go.focus()}
+function close(){md.classList.remove('on');document.body.style.overflow='';if(last)last.focus()}
+document.addEventListener('click',function(e){var a=e.target.closest('.store,.dl');if(a){e.preventDefault();last=a;var t=a.textContent;open(/App Store/.test(t)?'ios':/Google Play/.test(t)?'android':'both')}
+if(e.target===md||e.target.closest('.mx'))close()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')close()})})();
 </script>
-<!-- ===== /CAPTCHA MODAL ===== -->
 </body>
 </html>
