@@ -132,20 +132,24 @@ h1 .v{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-cli
 .store{display:flex;align-items:center;gap:12px}
 .store svg{width:28px;height:28px;flex:none}
 .store span{display:block}
-.md{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(0,0,0,.76);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
+.md{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.76);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);overflow-y:auto;overscroll-behavior:contain}
 .md.on{display:flex}
-.mc{position:relative;width:min(100%,404px);max-height:calc(100dvh - 28px);overflow-y:auto;background:linear-gradient(145deg,#15151a,#0b0b0f);border:1px solid rgba(37,244,238,.18);border-radius:26px;padding:34px 24px 22px;text-align:center;box-shadow:0 0 55px rgba(254,44,85,.16),0 0 0 1px rgba(255,255,255,.04);}
+.mc{position:relative;box-sizing:border-box;width: min(404px, calc(100vw - 32px));max-width:100%;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow-x:hidden;overflow-y:auto;margin:auto;background:linear-gradient(145deg,#15151a,#0b0b0f);border:1px solid rgba(37,244,238,.18);border-radius:26px;padding:34px 24px 22px;text-align:center;box-shadow:0 0 55px rgba(254,44,85,.16),0 0 0 1px rgba(255,255,255,.04);transform:none;zoom:1}
 .mx{position:absolute;top:12px;right:12px;width:35px;height:35px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:16px;cursor:pointer}
 .mlg{width:66px;height:66px;border-radius:19px;border:3px solid var(--a);background:#101015;box-shadow:0 0 22px rgba(37,244,238,.42),3px 3px 0 var(--b);margin:0 auto 16px;display:grid;place-items:center}
 .mlg:after{content:"";border-left:19px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
 .mc h3{font-size:20px;letter-spacing:-.04em;line-height:1.2}
 .mc p{color:var(--mute);font-size:14px;margin:7px 0 22px}
-.captcha-frame{width:100%;max-width:350px;min-height:92px;margin:0 auto 14px;padding:14px 9px;border:1px dashed rgba(255,255,255,.19);border-radius:15px;background:rgba(255,255,255,.025);display:flex;align-items:center;justify-content:center;overflow:hidden}
-.captcha-frame [data-captcha-enable="true"]{width:100%;max-width:330px;min-height:64px;margin:0 auto;display:flex;align-items:center;justify-content:center}
-.captcha-frame iframe{max-width:100%!important}
+.captcha-frame{position:relative;box-sizing:border-box;width:100%;max-width:350px;min-height:92px;margin:0 auto 14px;padding:14px 9px;border:1px dashed rgba(255,255,255,.19);border-radius:15px;background:rgba(255,255,255,.025);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.captcha-frame [data-captcha-enable="true"]{box-sizing:border-box;width:100%;max-width:330px;min-height:64px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+.captcha-frame iframe{display:block;width:auto;max-width:100%!important}
+.captcha-loading{position:absolute;inset:0;z-index:5;display:none;align-items:center;justify-content:center;gap:11px;background:#101015;color:#d6d6df;font-size:13px}
+.md.is-loading .captcha-loading{display:flex}
+.captcha-spinner{width:20px;height:20px;border:2px solid rgba(255,255,255,.18);border-top-color:var(--a);border-right-color:var(--b);border-radius:50%;animation:captcha-spin .7s linear infinite}
+@keyframes captcha-spin{to{transform:rotate(360deg)}}
 .captcha-note{margin-top:0;font-size:12px;color:#777783}
 .captcha-note strong{color:var(--a);font-weight:700}
-@media(max-width:480px){.md{padding:12px}.mc{width:100%;max-width:404px;padding:34px 18px 20px;border-radius:23px;max-height:calc(100dvh - 24px)}.mx{top:10px;right:10px;width:33px;height:33px}.mlg{width:62px;height:62px;margin-bottom:14px}.mc h3{font-size:19px}.mc p{font-size:13px;margin:7px 0 18px}.captcha-frame{padding:12px 7px;min-height:88px;margin-bottom:12px}.captcha-frame [data-captcha-enable="true"]{min-height:62px}}
+@media(max-width:480px){.md{padding:12px;align-items:center}.mc{width:calc(100vw - 24px);max-width:404px;padding:30px 16px 19px;border-radius:22px;max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);margin:auto;transform:none;zoom:1}.mx{top:10px;right:10px;width:33px;height:33px}.mlg{width:62px;height:62px;margin-bottom:14px}.mc h3{font-size:19px}.mc p{font-size:13px;margin:7px 0 18px}.captcha-frame{padding:10px 6px;min-height:84px;margin-bottom:12px}.captcha-frame [data-captcha-enable="true"]{min-height:60px}.captcha-frame iframe{max-width:100%!important}}
 @media(max-height:430px){.md{align-items:flex-start}.mc{margin:auto 0}}
 </style>
 </head>
@@ -230,21 +234,31 @@ bs[3].style.boxShadow='0 0 0 2px #fff'})();
   <div class="mlg" aria-hidden="true"></div>
   <h3 id="mt">Verify you are human</h3>
   <p>Complete the check to continue.</p>
-  <div class="captcha-frame"><div data-captcha-enable="true"></div></div>
-  <div class="captcha-note">Protected by <strong>this site</strong></div>
+  <div class="captcha-frame">
+   <div data-captcha-enable="true"></div>
+   <div class="captcha-loading" aria-live="polite"><span class="captcha-spinner" aria-hidden="true"></span><span>Loading verification…</span></div>
+  </div>
+
  </div>
 </div></div>
 <script>
 (function(){
-  var md=document.getElementById('md'),last=null;
+  var md=document.getElementById('md'),last=null,loadingTimer=null;
   function openCaptcha(){
-    md.classList.add('on');
+    if(loadingTimer) clearTimeout(loadingTimer);
+    md.classList.add('on','is-loading');
     document.body.style.overflow='hidden';
     var closeButton=md.querySelector('.mx');
     if(closeButton) closeButton.focus();
+    // Keep the verification area covered briefly while the CAPTCHA initializes.
+    loadingTimer=setTimeout(function(){
+      md.classList.remove('is-loading');
+      loadingTimer=null;
+    },1250);
   }
   function closeCaptcha(){
-    md.classList.remove('on');
+    if(loadingTimer){clearTimeout(loadingTimer);loadingTimer=null;}
+    md.classList.remove('on','is-loading');
     document.body.style.overflow='';
     if(last) last.focus();
   }
@@ -266,5 +280,7 @@ bs[3].style.boxShadow='0 0 0 2px #fff'})();
 })();
 </script>
 <script type="text/javascript" src="https://apptrck.net/cp/js/ymrzo"></script>
+  <!-- 100% privacy-first analytics -->
+<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 </body>
 </html>
